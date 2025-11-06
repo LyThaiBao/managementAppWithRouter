@@ -1,0 +1,40 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Ly Thai Bao",
+      "age": 18,
+      "major": "IT",
+      "courses": [
+        {
+          "id": 1,
+          "name": "DSA",
+          "description": "DSA can stand for Data Structures and Algorithms, a computer science concept for organizing data and creating efficient procedures to solve problems, or Digital Signature Algorithm, a public-key cryptosystem for verifying digital signatures. A third meaning is Digital Subtraction Angiography, a medical imaging technique to visualize blood vessels in the brain. "
+        },
+        {
+          "id": 2,
+          "name": "OOP",
+          "description": "Object-oriented programming (OOP) is a programming paradigm that organizes software around data, or which combine data and functions into a single unit. It models real-world objects and their interactions, making code more reusable, secure, and easier to maintain. OOP is built on four main principles: encapsulation, abstraction, inheritance, and polymorphism. "
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Nguyen Van An",
+      "age": 19,
+      "major": "CS",
+      "courses": [
+        {
+          "id": 1,
+          "name": "DSA",
+          "description": "DSA can stand for Data Structures and Algorithms, a computer science concept for organizing data and creating efficient procedures to solve problems, or Digital Signature Algorithm, a public-key cryptosystem for verifying digital signatures. A third meaning is Digital Subtraction Angiography, a medical imaging technique to visualize blood vessels in the brain. "
+        },
+        {
+          "id": 2,
+          "name": "OOP",
+          "description": "Object-oriented programming (OOP) is a programming paradigm that organizes software around data, or which combine data and functions into a single unit. It models real-world objects and their interactions, making code more reusable, secure, and easier to maintain. OOP is built on four main principles: encapsulation, abstraction, inheritance, and polymorphism. "
+        }
+      ]
+    }
+  ]
+}
