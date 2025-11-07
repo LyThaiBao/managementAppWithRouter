@@ -11,7 +11,7 @@ import {
   postData,
 } from "../api.js";
 import StudentList from "./components/StudentList.jsx";
-import StudentLayout from "./layouts/StudentLayout.jsx";
+// import StudentLayout from "./layouts/StudentLayout.jsx";
 import HomeLayout from "./layouts/HomeLayout.jsx";
 import StudentDetail from "./components/StudentDetail.jsx";
 import CourseDetail from "./components/CourseDetail.jsx";
@@ -34,6 +34,9 @@ function App() {
   function deleteSuccess(student) {
     dispatch({ type: "DELETE", mssv: student.mssv });
   }
+  function patchSuccess(student) {
+    dispatch({ type: "PATCH", data: student });
+  }
   useEffect(() => {
     getData("", API_OPTION({}).get, getSuccess, { setLoad, setErr });
   }, []);
@@ -44,6 +47,9 @@ function App() {
 
   function handleDelete(id) {
     deleteData(id, API_OPTION({}).delete, deleteSuccess, { setLoad, setErr });
+  }
+  function handleModify(student, id) {
+    patchData(id, API_OPTION(student).patch, patchSuccess, { setLoad, setErr });
   }
   // ---------------------RENDER-----------------------
   if (load) {
@@ -129,7 +135,15 @@ function App() {
                 />
               }
             />
-            <Route path="/action/modify" element={<StudentModify />} />
+            <Route
+              path="/action/modify"
+              element={
+                <StudentModify
+                  studentList={students}
+                  handleModify={handleModify}
+                />
+              }
+            />
           </Route>
         </Route>
 

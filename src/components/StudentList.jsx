@@ -8,13 +8,7 @@ export default function StudentList({ studentList = [] }) {
     <div className="student__list">
       {studentList.map((student) => (
         <Link key={student.id} to={`/show/students/${student.id}`}>
-          <Student
-            mssv={student.mssv}
-            id={student.id}
-            name={student.name}
-            age={student.age}
-            major={student.major}
-          ></Student>
+          <Student {...student}></Student>
         </Link>
       ))}
     </div>

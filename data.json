@@ -1,3 +1,25 @@
 {
-  "students": []
+  "students": [
+    {
+      "id": "930d",
+      "mssv": "B2408777",
+      "name": "Lý Thái Bảo",
+      "age": "18",
+      "major": "IT",
+      "courses": [
+        {
+          "id": 1,
+          "name": "DSA"
+        },
+        {
+          "id": 1762532276915,
+          "name": "OOP"
+        },
+        {
+          "id": 1762532281547,
+          "name": "Math"
+        }
+      ]
+    }
+  ]
 }

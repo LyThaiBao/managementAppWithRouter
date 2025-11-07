@@ -16,7 +16,7 @@ export default function StudentAdd({ handleAdd }) {
       major,
       courses,
     };
-    if (name && age && major && courses.length > 0) {
+    if (mssv && name && age && major && courses.length > 0) {
       handleAdd(student);
     }
   }
