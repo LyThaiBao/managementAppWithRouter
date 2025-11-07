@@ -3,7 +3,7 @@ export default function reducer(currentData = [], action) {
     case "GET":
       return action.data;
     case "DELETE":
-      return currentData.filter((c) => c.id != action.id);
+      return currentData.filter((c) => c.mssv != action.mssv);
     case "POST":
       return [...currentData, action.data];
     case "PATCH":

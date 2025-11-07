@@ -23,6 +23,7 @@ export default function StudentDetail() {
   }
   return (
     <div>
+      <span>Student ID: {student.mssv}</span>
       <h2>Student Name: {student.name}</h2>
       <span>Student Age: {student.age}</span>
       <div>Major: {student.major}</div>

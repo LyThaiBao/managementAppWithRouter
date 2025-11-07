@@ -39,6 +39,7 @@ export function deleteData(paramPath, option, successAction, setState) {
   handleApi(paramPath, option, successAction, setState);
 }
 export function postData(paramPath, option, successAction, setState) {
+  console.log(successAction);
   handleApi(paramPath, option, successAction, setState);
 }
 export function patchData(paramPath, option, successAction, setState) {

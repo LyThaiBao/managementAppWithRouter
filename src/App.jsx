@@ -1,9 +1,15 @@
 import { useReducer } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, data } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./App.css";
 import reducer from "./helpers/reducer.js";
-import { getData, API_OPTION } from "../api.js";
+import {
+  getData,
+  API_OPTION,
+  patchData,
+  deleteData,
+  postData,
+} from "../api.js";
 import StudentList from "./components/StudentList.jsx";
 import StudentLayout from "./layouts/StudentLayout.jsx";
 import HomeLayout from "./layouts/HomeLayout.jsx";
@@ -11,17 +17,34 @@ import StudentDetail from "./components/StudentDetail.jsx";
 import CourseDetail from "./components/CourseDetail.jsx";
 import ContentHome from "./components/ContentHome.jsx";
 import ActionPage from "./layouts/ActionPage.jsx";
+import StudentAdd from "./components/StudentAdd.jsx";
+import StudentDelete from "./components/StudentDelete.jsx";
+import StudentModify from "./components/StudentModify.jsx";
 function App() {
   const [students, dispatch] = useReducer(reducer, []);
   const [load, setLoad] = useState(false);
   const [err, setErr] = useState(null);
+  const [editStudent, setEditStudent] = useState(null);
   function getSuccess(student) {
     dispatch({ type: "GET", data: student });
+  }
+  function postSuccess(student) {
+    dispatch({ type: "POST", data: student });
+  }
+  function deleteSuccess(student) {
+    dispatch({ type: "DELETE", mssv: student.mssv });
   }
   useEffect(() => {
     getData("", API_OPTION({}).get, getSuccess, { setLoad, setErr });
   }, []);
 
+  function handleAdd(student) {
+    postData("", API_OPTION(student).post, postSuccess, { setLoad, setErr });
+  }
+
+  function handleDelete(id) {
+    deleteData(id, API_OPTION({}).delete, deleteSuccess, { setLoad, setErr });
+  }
   // ---------------------RENDER-----------------------
   if (load) {
     return <div>Load...</div>;
@@ -63,6 +86,7 @@ function App() {
                 c3: "ADD,DELETE OR MODIFY STUDENT",
               }}
               className={"nav__home"}
+              paths={{ c1: "home", c2: "show/students", c3: "action" }}
             />
           }
         >
@@ -76,17 +100,38 @@ function App() {
             path="show/students/:studentId/courses/:courseId"
             element={<CourseDetail />}
           />
+          {/* ---------------------------------- */}
+
           <Route
             path="action"
             element={
               <ActionPage
-                category={{ c1: "ADD/MODIFY", c2: "DELETE" }}
+                category={{ c1: "ADD", c2: "MODIFY", c3: "DELETE" }}
                 className={"nav__action"}
+                paths={{
+                  c1: "action/add",
+                  c2: "action/modify",
+                  c3: "action/delete",
+                }}
               />
             }
-          ></Route>
+          >
+            <Route
+              path="/action/add"
+              element={<StudentAdd handleAdd={handleAdd} />}
+            />
+            <Route
+              path="/action/delete"
+              element={
+                <StudentDelete
+                  handleDelete={handleDelete}
+                  studentsList={students}
+                />
+              }
+            />
+            <Route path="/action/modify" element={<StudentModify />} />
+          </Route>
         </Route>
-        {/* ---------------------------------- */}
 
         {/* ------------------------------------------- */}
       </Routes>
